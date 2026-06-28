@@ -1,0 +1,1505 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Webcraft Nepal — Independent Web Engineering Studio, Biratnagar</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    [data-theme="dark"] {
+      --bg:          #080808;
+      --bg-2:        #0E0E0E;
+      --bg-3:        #141414;
+      --surface:     rgba(255, 255, 255, 0.03);
+      --surface-2:   rgba(255, 255, 255, 0.015);
+      --border:      rgba(255, 255, 255, 0.10);
+      --border-2:    rgba(200, 110, 70, 0.25);
+      --border-rainbow: linear-gradient(135deg, 
+        rgba(218, 119, 68, 0.25), 
+        rgba(255, 255, 255, 0.15), 
+        rgba(160, 130, 200, 0.15),
+        rgba(100, 150, 200, 0.15),
+        rgba(218, 119, 68, 0.2)
+      );
+      --text:        #EAE4DE;
+      --text-muted:  #7C7570;
+      --text-sub:    #A69F9B;
+      --accent:      #C86A3B;
+      --accent-2:    #D58455;
+      --accent-3:    #E09E77;
+      --accent-soft: rgba(200, 110, 70, 0.08);
+      --accent-glow: rgba(200, 110, 70, 0.18);
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+      --shadow-glow: 0 0 32px rgba(200, 110, 70, 0.08);
+      --mesh-1: rgba(200, 110, 70, 0.06);
+      --mesh-2: rgba(213, 132, 85, 0.03);
+      --mesh-3: rgba(224, 158, 119, 0.02);
+      --nav-bg: rgba(8, 8, 8, 0.75);
+      --mobile-bg: rgba(8, 8, 8, 0.95);
+      --progress-grad: linear-gradient(90deg, #C86A3B, #E09E77, #C86A3B);
+      --grid-line: rgba(255, 255, 255, 0.015);
+      --glow-pulse-from: rgba(200, 110, 70, 0.35);
+      --glow-pulse-to:   rgba(200, 110, 70, 0);
+      --btn-primary-text: #080808;
+      --btn-primary-shadow: rgba(200, 110, 70, 0.2);
+      --btn-primary-shadow-hover: rgba(200, 110, 70, 0.35);
+      --liquid-shine-top: rgba(255, 255, 255, 0.12);
+      --liquid-shine-bottom: rgba(255, 255, 255, 0.0);
+      --liquid-refraction: rgba(255, 255, 255, 0.04);
+      --liquid-specular: rgba(255, 255, 255, 0.25);
+    }
+
+    [data-theme="light"] {
+      --bg:          #FAF7F2;
+      --bg-2:        #F3ECE2;
+      --bg-3:        #ECE3D6;
+      --surface:     rgba(255, 255, 255, 0.22);
+      --surface-2:   rgba(255, 255, 255, 0.12);
+      --border:      rgba(255, 255, 255, 0.3);
+      --border-2:    rgba(200, 110, 70, 0.25);
+      --border-rainbow: linear-gradient(135deg, 
+        rgba(200, 110, 70, 0.25), 
+        rgba(255, 255, 255, 0.35), 
+        rgba(160, 130, 200, 0.15),
+        rgba(100, 150, 200, 0.15),
+        rgba(200, 110, 70, 0.2)
+      );
+      --text:        #241C18;
+      --text-muted:  #8C7F75;
+      --text-sub:    #665B54;
+      --accent:      #B2592B;
+      --accent-2:    #C86A3B;
+      --accent-3:    #D58455;
+      --accent-soft: rgba(200, 110, 70, 0.06);
+      --accent-glow: rgba(200, 110, 70, 0.12);
+      --shadow-card: 0 6px 20px rgba(100, 60, 20, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.65);
+      --shadow-glow: 0 0 24px rgba(200, 110, 70, 0.06);
+      --mesh-1: rgba(200, 110, 70, 0.04);
+      --mesh-2: rgba(213, 132, 85, 0.02);
+      --mesh-3: rgba(224, 158, 119, 0.015);
+      --nav-bg: rgba(250, 247, 242, 0.75);
+      --mobile-bg: rgba(250, 247, 242, 0.96);
+      --progress-grad: linear-gradient(90deg, #B2592B, #D58455, #B2592B);
+      --grid-line: rgba(180, 140, 100, 0.04);
+      --glow-pulse-from: rgba(200, 110, 70, 0.25);
+      --glow-pulse-to:   rgba(200, 110, 70, 0);
+      --btn-primary-text: #FAF7F2;
+      --btn-primary-shadow: rgba(200, 110, 70, 0.15);
+      --btn-primary-shadow-hover: rgba(200, 110, 70, 0.25);
+      --liquid-shine-top: rgba(255, 255, 255, 0.45);
+      --liquid-shine-bottom: rgba(255, 255, 255, 0.0);
+      --liquid-refraction: rgba(255, 255, 255, 0.1);
+      --liquid-specular: rgba(255, 255, 255, 0.55);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.45s ease, color 0.45s ease;
+      cursor: default;
+    }
+
+    *, *::before, *::after {
+      transition: background-color 0.4s ease, border-color 0.4s ease, color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .hero-word, .hero-sub, .hero-cta, .hero-scroll { transition: none !important; }
+    .reveal, .reveal-left, .reveal-right, .reveal-scale { transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1) !important; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-2); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body, a, button, input, textarea, select, [role="button"] {
+      cursor: default;
+    }
+    a, button, [role="button"], .track-btn, .theme-btn, .btn-primary, .btn-ghost, .nav-link {
+      cursor: pointer;
+    }
+    input, textarea, select {
+      cursor: text;
+    }
+
+    .hero-bottom-deco {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-wave-svg {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      width: 100%; height: 100%;
+    }
+    .wave-path-1 {
+      stroke: var(--accent);
+      stroke-width: 1;
+      fill: none;
+      opacity: 0.35;
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      animation: wave-draw 3.5s cubic-bezier(.22,1,.36,1) 1.6s forwards;
+    }
+    .wave-path-2 {
+      stroke: var(--accent-3);
+      stroke-width: 0.6;
+      fill: none;
+      opacity: 0.18;
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      animation: wave-draw 4s cubic-bezier(.22,1,.36,1) 1.9s forwards;
+    }
+    .hero-dots-row {
+      position: absolute;
+      bottom: 10px; left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      align-items: center;
+    }
+    .hero-dot-tick {
+      width: 2px;
+      border-radius: 1px;
+      background: var(--accent);
+      opacity: 0;
+      animation: tick-fade 0.4s ease forwards;
+    }
+    @keyframes wave-draw {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes tick-fade {
+      to { opacity: 1; }
+    }
+
+    #code-rain-canvas {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      width: 100%; height: 120px;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .bg-mesh {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 10% -5%,  var(--mesh-1) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 40% at 90% 105%, var(--mesh-2) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 55% at 50% 50%,  var(--mesh-3) 0%, transparent 70%);
+      transition: background 0.45s ease;
+    }
+    .noise-overlay {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    }
+
+    .card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(40px) saturate(220%) brightness(1.08);
+      -webkit-backdrop-filter: blur(40px) saturate(220%) brightness(1.08);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(
+        180deg,
+        var(--liquid-shine-top) 0%,
+        var(--liquid-refraction) 35%,
+        var(--liquid-shine-bottom) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+      border-radius: inherit;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: var(--border-rainbow);
+      background-size: 300% 300%;
+      animation: liquid-border-shift 8s ease infinite;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: xor;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.65;
+    }
+    @keyframes liquid-border-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      box-shadow: var(--shadow-card), 0 10px 30px rgba(200, 110, 70, 0.08);
+    }
+    .card:hover::after {
+      opacity: 0.95;
+    }
+
+    .grad-text {
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent-2) 45%, var(--accent) 85%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    [data-theme="light"] .grad-text {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .grad-text-warm {
+      background: linear-gradient(135deg, var(--accent-2) 0%, var(--accent-3) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .btn-primary {
+      position: relative;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: var(--btn-primary-text);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 10px;
+      font-weight: 700; font-size: 13px; letter-spacing: 0.04em;
+      padding: 12px 28px; cursor: pointer;
+      box-shadow: 0 4px 20px var(--btn-primary-shadow);
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s !important;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.25) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .btn-primary:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 8px 32px var(--btn-primary-shadow-hover); }
+
+    .btn-ghost {
+      background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+      border-radius: 10px; font-weight: 600; font-size: 13px; letter-spacing: 0.04em;
+      padding: 12px 28px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s !important;
+    }
+    .btn-ghost:hover { border-color: var(--border-2); background: var(--accent-soft); transform: translateY(-1px); }
+
+    .theme-btn {
+      width: 40px; height: 40px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--surface-2);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--text-muted);
+      transition: border-color 0.2s, color 0.2s, transform 0.2s !important;
+      flex-shrink: 0;
+    }
+    .theme-btn:hover { border-color: var(--border-2); color: var(--accent); transform: rotate(15deg) scale(1.05); }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600;
+    }
+
+    .nav-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 32px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-bar.scrolled {
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    }
+    .nav-link {
+      color: var(--text-muted); font-size: 13.5px; font-weight: 500;
+      text-decoration: none; position: relative;
+      transition: color 0.2s !important;
+      cursor: pointer;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link.active { color: var(--text); }
+    .nav-link.active::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: var(--accent); border-radius: 2px;
+    }
+
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+
+    .reveal       { opacity: 0; transform: translateY(32px); }
+    .reveal-left  { opacity: 0; transform: translateX(-32px); }
+    .reveal-right { opacity: 0; transform: translateX(32px); }
+    .reveal-scale { opacity: 0; transform: scale(0.94); }
+    .reveal.visible, .reveal-left.visible, .reveal-right.visible, .reveal-scale.visible {
+      opacity: 1; transform: translateY(0) translateX(0) scale(1);
+    }
+
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent-soft); border: 1px solid rgba(218,119,68,0.20);
+    }
+
+    .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.38s cubic-bezier(.22,1,.36,1) !important; }
+    .faq-body.open { grid-template-rows: 1fr; }
+    .faq-body > div { overflow: hidden; min-height: 0; }
+
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 2px; z-index: 200;
+      background: var(--progress-grad); width: 0%; transition: width 0.1s linear !important;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; border-radius: 6px;
+      background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(218,119,68,0.20);
+    }
+
+    @keyframes glow-pulse {
+      0%,100% { box-shadow: 0 0 0 0 var(--glow-pulse-from); }
+      50%      { box-shadow: 0 0 0 6px var(--glow-pulse-to); }
+    }
+    .glow-dot { animation: glow-pulse 2.5s ease-in-out infinite; }
+
+    @keyframes float-caret { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    .float-caret { animation: float-caret 2.2s ease-in-out infinite; }
+
+    @keyframes float-p {
+      0%,100% { transform: translateY(0) scale(1); opacity: 0.45; }
+      50%      { transform: translateY(-28px) scale(1.3); opacity: 0.85; }
+    }
+
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 90;
+      background: var(--mobile-bg); backdrop-filter: blur(24px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease !important;
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+
+    .track-btn { transition: all 0.25s ease !important; }
+    .track-btn.active { border-color: var(--accent) !important; background: var(--accent-soft) !important; }
+    .viewport-btn { transition: all 0.2s !important; }
+    .viewport-btn.active { background: var(--accent) !important; color: var(--btn-primary-text) !important; }
+
+    .form-input {
+      width: 100%; background: var(--surface-2); border: 1px solid var(--border);
+      color: var(--text); border-radius: 10px; padding: 13px 16px;
+      font-size: 14px; font-family: inherit; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
+    .form-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .form-input::placeholder { color: var(--text-muted); }
+    textarea.form-input { resize: vertical; min-height: 110px; }
+
+    section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 768px) { section { padding: 72px 20px; } }
+    @media (max-width: 900px)  { .hidden-mobile { display: none !important; } #mobile-toggle { display: flex !important; } }
+    @media (max-width: 640px)  { .work-grid { grid-template-columns: 1fr !important; } .simulator-grid { grid-template-columns: 1fr !important; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-left, .reveal-right, .reveal-scale { opacity: 1; transform: none; }
+      .marquee-track, .float-caret, .glow-dot { animation: none; }
+      .wave-path-1, .wave-path-2 { animation: none; stroke-dashoffset: 0; }
+      body { cursor: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-mesh"></div>
+  <div class="noise-overlay"></div>
+  <div id="progress-bar"></div>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <script>
+  /* ════ MOUSE-REACTIVE BACKGROUND ANIMATION — FAST FOLLOW ════ */
+  (function () {
+    const canvas = document.getElementById('bg-canvas');
+    const ctx    = canvas.getContext('2d');
+
+    let W, H;
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    // mouse — start off-screen
+    let mx = -1000, my = -1000;
+    let tx = -1000, ty = -1000; // smoothed target
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX;
+      my = e.clientY;
+    }, { passive: true });
+
+    function isDark() {
+      return document.documentElement.getAttribute('data-theme') !== 'light';
+    }
+
+    // ── floating orbs ──
+    const ORBS = Array.from({ length: 6 }, (_, i) => ({
+      x: Math.random() * 1200,
+      y: Math.random() * 800,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      r: 180 + Math.random() * 140,
+      phase: Math.random() * Math.PI * 2,
+    }));
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    // ── persistent per-dot scale state (for smooth zoom) ──
+    let dotState = null, dotCols = 0, dotRows = 0;
+    const DOT_SPACING = 42;
+    function ensureDotState() {
+      const cols = Math.ceil(W / DOT_SPACING) + 1;
+      const rows = Math.ceil(H / DOT_SPACING) + 1;
+      if (cols !== dotCols || rows !== dotRows || !dotState) {
+        dotCols = cols; dotRows = rows;
+        dotState = new Float32Array(cols * rows);
+      }
+    }
+
+    let last = 0;
+    function loop(ts) {
+      requestAnimationFrame(loop);
+      if (ts - last < 6) return; // ~165fps cap for ultra-snappy response
+      last = ts;
+
+      ctx.clearRect(0, 0, W, H);
+
+      const dark  = isDark();
+      const t     = ts * 0.001;
+
+      // ── NEAR-INSTANT mouse follower (0.62 = essentially glued to cursor) ──
+      tx = lerp(tx, mx, 0.62);
+      ty = lerp(ty, my, 0.62);
+
+      // ── 1. mouse spotlight ──
+      const spotR = 320;
+      const spot  = ctx.createRadialGradient(tx, ty, 0, tx, ty, spotR);
+      if (dark) {
+        spot.addColorStop(0,   'rgba(218,119,68,0.10)');
+        spot.addColorStop(0.5, 'rgba(218,119,68,0.04)');
+        spot.addColorStop(1,   'rgba(218,119,68,0)');
+      } else {
+        spot.addColorStop(0,   'rgba(192,94,42,0.08)');
+        spot.addColorStop(0.5, 'rgba(192,94,42,0.03)');
+        spot.addColorStop(1,   'rgba(192,94,42,0)');
+      }
+      ctx.beginPath();
+      ctx.arc(tx, ty, spotR, 0, Math.PI * 2);
+      ctx.fillStyle = spot;
+      ctx.fill();
+
+      // ── 2. drifting ambient orbs ──
+      for (const orb of ORBS) {
+        orb.phase += 0.004;
+        orb.x += orb.vx + Math.sin(orb.phase) * 0.12;
+        orb.y += orb.vy + Math.cos(orb.phase * 0.7) * 0.10;
+        if (orb.x < -orb.r) orb.x = W + orb.r;
+        if (orb.x > W + orb.r) orb.x = -orb.r;
+        if (orb.y < -orb.r) orb.y = H + orb.r;
+        if (orb.y > H + orb.r) orb.y = -orb.r;
+
+        // strong pull toward mouse
+        const dx = tx - orb.x, dy = ty - orb.y;
+        const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+        orb.x += (dx / dist) * 0.28;
+        orb.y += (dy / dist) * 0.28;
+
+        const g = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r);
+        if (dark) {
+          g.addColorStop(0, 'rgba(218,119,68,0.055)');
+          g.addColorStop(1, 'rgba(218,119,68,0)');
+        } else {
+          g.addColorStop(0, 'rgba(192,94,42,0.038)');
+          g.addColorStop(1, 'rgba(192,94,42,0)');
+        }
+        ctx.beginPath();
+        ctx.arc(orb.x, orb.y, orb.r, 0, Math.PI * 2);
+        ctx.fillStyle = g;
+        ctx.fill();
+      }
+
+      // ── 3. dot field — sparse & elegant at rest, sharp + responsive near cursor ──
+      ensureDotState();
+      const spacing   = DOT_SPACING;
+      const radius    = 240;            // reaction range — tight enough to feel precise, not a slow blob
+      const baseR     = 0.5;
+      const baseAlpha = dark ? 0.05 : 0.035;  // dim, refined resting dots
+      const hasMouse  = tx > -500 && ty > -500;
+
+      for (let r = 0; r < dotRows; r++) {
+        for (let c = 0; c < dotCols; c++) {
+          const bx = c * spacing;
+          const by = r * spacing;
+
+          let target = 0;
+          if (hasMouse) {
+            const dx = tx - bx, dy = ty - by;
+            const d  = Math.sqrt(dx*dx + dy*dy);
+            if (d < radius) {
+              const n = 1 - d / radius;
+              target = n * n * n; // cubic falloff — sharper, more deliberate hotspot
+            }
+          }
+
+          // Snappy, self-adjusting easing — fast in, fast (but smooth) settle out
+          const idx = r * dotCols + c;
+          const easeIn  = 0.5;  // grows almost instantly as cursor nears
+          const easeOut = 0.16; // settles back confidently, no lingering
+          const ease = target > dotState[idx] ? easeIn : easeOut;
+          const cur = dotState[idx] + (target - dotState[idx]) * ease;
+          dotState[idx] = cur;
+
+          const dx2 = tx - bx, dy2 = ty - by;
+          const px = bx + dx2 * cur * 0.05;
+          const py = by + dy2 * cur * 0.05;
+
+          const a  = baseAlpha + cur * 0.85;
+          const sz = baseR + cur * 8.0;
+
+          ctx.beginPath();
+          ctx.arc(px, py, sz, 0, Math.PI * 2);
+          ctx.fillStyle = dark
+            ? `rgba(218,119,68,${a})`
+            : `rgba(192,94,42,${a})`;
+          ctx.fill();
+        }
+      }
+    }
+    requestAnimationFrame(loop);
+  })();
+  </script>
+
+  <div id="root"></div>
+
+  <script>
+  window.__LOGO_SRC__ = "data:image/png;base64,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";
+</script>
+<script type="text/babel">
+    const { useState, useEffect, useRef, useMemo } = React;
+
+    const NAV = [
+      { id:"studio", label:"Studio" }, { id:"outcomes", label:"Outcomes" },
+      { id:"process", label:"Process" },
+      { id:"work", label:"Work" }, { id:"pricing", label:"Pricing" },
+      { id:"services", label:"Services" }, { id:"stack", label:"Stack" },
+      { id:"capabilities", label:"Capabilities" },
+      { id:"faq", label:"FAQ" }, { id:"contact", label:"Contact" },
+    ];
+
+    const PRICING = [
+      { name:"Starter", price:12000, tagline:"A sharp one-page presence",
+        popular:false,
+        features:["Single-page custom site","Mobile-first responsive build","Contact form → WhatsApp","Basic on-page SEO","1 round of revisions","7 days post-launch support"] },
+      { name:"Business", price:13500, tagline:"Most popular for growing brands",
+        popular:true,
+        features:["Up to 5 custom pages","Bilingual — Nepali & English","WhatsApp + lead capture flows","Gallery / menu / services pages","On-page SEO + speed tuning","2 rounds of revisions","14 days post-launch support"] },
+      { name:"Pro", price:15000, tagline:"For firms that need it all",
+        popular:false,
+        features:["Up to 8 custom pages","Everything in Business","Booking / inquiry system","CMS-ready content sections","Analytics + search console setup","3 rounds of revisions","30 days post-launch support"] },
+    ];
+
+    const SERVICES = [
+      { icon:"bolt",  title:"Custom Website Design", text:"Hand-coded, pixel-perfect websites built from scratch around your brand — no templates, no page builders." },
+      { icon:"phone", title:"Mobile-First Builds", text:"Every layout is designed for the phone first, then scaled up — because that's where your customers actually are." },
+      { icon:"card",  title:"Landing Pages", text:"High-converting single pages for campaigns, product launches, and ad traffic that turn visitors into leads." },
+      { icon:"shield",title:"SEO & Performance", text:"On-page SEO, sub-second load times, and clean markup so you rank higher and bounce less." },
+      { icon:"card",  title:"WhatsApp Integration", text:"Contact and booking forms that drop straight into WhatsApp so no inquiry ever slips through." },
+      { icon:"bolt",  title:"Maintenance & Support", text:"Ongoing fixes, content updates, and small feature additions after launch — we don't disappear." },
+    ];
+
+    const STACK = [
+      { name:"HTML5", note:"Semantic markup" },
+      { name:"CSS3", note:"Hand-written styles" },
+      { name:"JavaScript", note:"Vanilla & React" },
+      { name:"React", note:"Interactive UIs" },
+      { name:"Next.js", note:"Fast, SEO-ready" },
+      { name:"Tailwind", note:"Utility styling" },
+      { name:"Vercel", note:"Edge hosting" },
+      { name:"Git", note:"Version control" },
+    ];
+
+    const STEPS = [
+      { n:"01", title:"Discover",      text:"We learn how the business actually runs — who the site needs to convince, what makes a visitor trust you, and what's already working in your favour." },
+      { n:"02", title:"Architect",     text:"Before any screen is designed, we map the structure: page hierarchy, content model, and every interaction point — forms, WhatsApp flows, lead capture." },
+      { n:"03", title:"Build",         text:"Every line written by hand. No page-builder runtime ships to your visitors, no third-party theme dictates what's possible later." },
+      { n:"04", title:"Launch & Tune", text:"A full performance and security pass, QA across real Nepali network conditions and devices, then a clean handoff with documentation." },
+    ];
+
+    const TRACKS = [
+      { id:"ops", title:"Operations Core", category:"Corporate & Professional", desc:"For firms, agencies, and professional practices that need a site as dependable and precise as the rest of their operation.", price:15000,
+        features:["Bilingual interface — Nepali and English","Encrypted contact and document forms","Built to stay fast under traffic spikes"],
+        image:"https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80",
+        tags:["Client Registry","Secure Docs","Staff Access","Lead Capture"], heroTitle:"Unified Business Operations", heroSub:"A calm, fast interface for clients and staff." },
+      { id:"hosp", title:"Hospitality Grid", category:"Hotels & Restaurants", desc:"Built for boutique hotels and restaurants that live or die by how quickly a booking request turns into a confirmed room.", price:13500,
+        features:["Booking requests sync to WhatsApp instantly","Menu and gallery load fast on mobile data","Every inquiry logged into a lead list"],
+        image:"https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=900&q=80",
+        tags:["Live Availability","Guest Intake","Gallery","WhatsApp Sync"], heroTitle:"Reservations, Simplified", heroSub:"Bridge the front desk and the front door." },
+      { id:"brand", title:"Brand Platform", category:"Startups & Creative Studios", desc:"For founders and creative teams who need a site that sells the vision before the product is even finished.", price:12000,
+        features:["Story-first layout that builds trust fast","Clean typography and motion that feels premium","Built to launch fast and update without help"],
+        image:"https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80",
+        tags:["Brand Story","Team Page","Contact","CMS-ready"], heroTitle:"Your Brand, Built to Impress", heroSub:"A site that works as hard as your pitch deck." },
+    ];
+
+    const CAPS = [
+      { icon:"bolt",   title:"Sub-second by default", text:"No unused frameworks, no megabyte bundles. Pages built to render fast on the network conditions your customers actually have." },
+      { icon:"shield", title:"Hardened by default",   text:"HTTPS everywhere, sane security headers, and form handling that doesn't leave obvious holes — the basics, done properly." },
+      { icon:"card",   title:"Designed to convert",   text:"Every layout decision is tied to an outcome — more inquiries, more bookings, more trust. Looks are a byproduct of intent." },
+      { icon:"phone",  title:"Built mobile-first",    text:"Most of your traffic arrives on a phone, on uneven data. Every layout is designed for that screen first, then scaled up." },
+    ];
+
+    const FAQS = [
+      { q:"How long does a project take?", a:"Most single-package builds take one to two weeks from a signed-off design to launch, depending on how much content needs to go in." },
+      { q:"Do you build on WordPress or a website builder?", a:"No. Every site is hand-coded — no theme files, no page-builder runtime shipped to your visitors. That's what keeps load times low and keeps you from being locked into someone else's platform." },
+      { q:"Can I add more features after launch?", a:"Yes — new sections, contact flows, and integrations can be added to an existing build. It's always faster and cheaper to plan for them upfront, but nothing is locked." },
+      { q:"Do you offer support after the site goes live?", a:"Every project includes a fixed support window after launch for fixes and small adjustments. Ongoing maintenance beyond that is available separately." },
+      { q:"Can I see examples of past work?", a:"We're a young studio and don't have a public client portfolio yet. We can walk you through exactly how we build, show you a live working demo, and let the process speak for itself." },
+      { q:"What do you need from me to get started?", a:"Just a short brief — your business details, what the site needs to do, and any branding you already have. We can work with placeholder content if your final copy isn't ready yet." },
+    ];
+
+    const ICONS = {
+      bolt:   <path strokeLinecap="round" strokeLinejoin="round" d="M13 2L4.5 14H11l-1 8 8.5-12H12l1-8z"/>,
+      shield: <path strokeLinecap="round" strokeLinejoin="round" d="M12 3l8 3v6c0 5-3.5 8.5-8 9.5C7.5 20.5 4 17 4 12V6l8-3z"/>,
+      card:   <g><rect x="3" y="6" width="18" height="13" rx="2" strokeLinecap="round" strokeLinejoin="round"/><path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h4"/></g>,
+      phone:  <g><rect x="7" y="2.5" width="10" height="19" rx="2.5" strokeLinecap="round" strokeLinejoin="round"/><path strokeLinecap="round" strokeLinejoin="round" d="M11 18.5h2"/></g>,
+    };
+
+    const SunIcon = () => (
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    );
+    const MoonIcon = () => (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+      </svg>
+    );
+
+    function Particles() {
+      const ps = useMemo(() => Array.from({length:14},(_,i)=>({
+        id:i, size:Math.random()*3+1.5, left:Math.random()*100, top:Math.random()*100,
+        delay:Math.random()*5, dur:Math.random()*4+5, opacity:Math.random()*0.28+0.12,
+      })),[]);
+      return (
+        <div style={{position:'absolute',inset:0,overflow:'hidden',pointerEvents:'none'}}>
+          {ps.map(p=>(
+            <div key={p.id} style={{
+              position:'absolute', width:p.size, height:p.size, left:`${p.left}%`, top:`${p.top}%`,
+              borderRadius:'50%', background:'var(--accent)', opacity:p.opacity,
+              animation:`float-p ${p.dur}s ease-in-out ${p.delay}s infinite`,
+            }}/>
+          ))}
+        </div>
+      );
+    }
+
+    function HeroBottomDeco() {
+      const canvasRef = useRef(null);
+
+      const W = 1440, H = 120;
+      function makePath(yOffset, amp, freq, phase) {
+        const pts = [];
+        for (let x = 0; x <= W; x += 6) {
+          const y = H/2 + yOffset + Math.sin((x / W) * freq * Math.PI * 2 + phase) * amp
+                    + Math.sin((x / W) * (freq*1.7) * Math.PI * 2 + phase * 0.8) * (amp*0.4);
+          pts.push(`${x},${y.toFixed(2)}`);
+        }
+        return 'M' + pts.join(' L');
+      }
+
+      const ticks = useMemo(() => Array.from({length:32}, (_,i) => ({
+        x: (i / 31) * 100,
+        h: Math.random() * 18 + 4,
+        delay: i * 60,
+        opacity: Math.random() * 0.5 + 0.2,
+      })), []);
+
+      useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width  = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        const cols = Math.floor(canvas.width / 18);
+        const drops = Array.from({length: cols}, () => Math.random() * -canvas.height);
+        const chars = '01{}[]<>/\\|=+abcdefψδΩ∑';
+
+        let raf;
+        let frame = 0;
+
+        function draw() {
+          raf = requestAnimationFrame(draw);
+          frame++;
+          if (frame % 3 !== 0) return;
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          const accent = getComputedStyle(document.documentElement)
+            .getPropertyValue('--accent').trim() || '#DA7744';
+
+          for (let i = 0; i < drops.length; i++) {
+            const char  = chars[Math.floor(Math.random() * chars.length)];
+            const y     = drops[i];
+            const alpha = Math.max(0, (y / canvas.height) * 0.5);
+            ctx.font = '11px JetBrains Mono, monospace';
+            ctx.fillStyle = accent.startsWith('#')
+              ? hexToRgba(accent, alpha)
+              : accent;
+            if (y > 0) ctx.fillText(char, i * 18, y);
+
+            drops[i] += 14;
+            if (drops[i] > canvas.height + 20) drops[i] = -20 - Math.random() * 80;
+          }
+        }
+        draw();
+        return () => cancelAnimationFrame(raf);
+      }, []);
+
+      function hexToRgba(hex, alpha) {
+        const c = hex.replace('#','');
+        const r = parseInt(c.substring(0,2),16);
+        const g = parseInt(c.substring(2,4),16);
+        const b = parseInt(c.substring(4,6),16);
+        return `rgba(${r},${g},${b},${alpha})`;
+      }
+
+      const path1 = makePath(-10, 22, 2.2, 0);
+      const path2 = makePath(8,  14, 3.5, 1.1);
+
+      return (
+        <div style={{position:'absolute',bottom:0,left:0,right:0,height:120,pointerEvents:'none',overflow:'hidden'}}>
+          <canvas ref={canvasRef} style={{position:'absolute',inset:0,width:'100%',height:'100%',opacity:0.45}}/>
+          <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none"
+            style={{position:'absolute',inset:0,width:'100%',height:'100%'}}>
+            <defs>
+              <linearGradient id="wave-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="transparent"/>
+                <stop offset="20%" stopColor="var(--accent)" stopOpacity="1"/>
+                <stop offset="80%" stopColor="var(--accent-3)" stopOpacity="1"/>
+                <stop offset="100%" stopColor="transparent"/>
+              </linearGradient>
+            </defs>
+            <path d={path1} stroke="url(#wave-grad)" strokeWidth="1" fill="none" className="wave-path-1"/>
+            <path d={path2} stroke="var(--accent-3)" strokeWidth="0.7" fill="none" className="wave-path-2" opacity="0.3"/>
+          </svg>
+          <div style={{position:'absolute',bottom:0,left:0,right:0,display:'flex',alignItems:'flex-end',justifyContent:'space-between',padding:'0 24px'}}>
+            {ticks.map((t,i)=>(
+              <div key={i} style={{
+                width:1.5, height:t.h, borderRadius:1,
+                background:'var(--accent)',
+                opacity: t.opacity,
+                animation:`tick-fade 0.4s ease ${t.delay}ms both`,
+              }}/>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    function useReveal() {
+      useEffect(()=>{
+        const nodes = document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale');
+        const io = new IntersectionObserver(entries=>{
+          entries.forEach(e=>{
+            if(e.isIntersecting) e.target.classList.add('visible');
+            else e.target.classList.remove('visible');
+          });
+        },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+        nodes.forEach(n=>io.observe(n));
+        return ()=>io.disconnect();
+      },[]);
+    }
+
+    // Every box on the site grows slightly as the cursor approaches it, and
+    // eases back down as the cursor moves away. Writes transform as an
+    // inline style (highest CSS specificity) so it layers cleanly on top of
+    // the .reveal/.visible scroll-entry system without touching that CSS.
+    function useCardProximity() {
+      useEffect(() => {
+        let mx = -9999, my = -9999;
+        let cards = [];
+        let raf = null;
+        const PROX_RADIUS = 260; // px — how far away the effect starts reacting
+
+        const refreshCards = () => {
+          const els = Array.from(document.querySelectorAll('.card'));
+          cards = els.map(el => {
+            const existing = cards.find(c => c.el === el);
+            return existing || { el, cur: 0 };
+          });
+        };
+
+        const onMove = e => { mx = e.clientX; my = e.clientY; };
+        window.addEventListener('mousemove', onMove, { passive: true });
+        const onTouch = e => {
+          if (e.touches && e.touches[0]) { mx = e.touches[0].clientX; my = e.touches[0].clientY; }
+        };
+        window.addEventListener('touchmove', onTouch, { passive: true });
+
+        refreshCards();
+        const mo = new MutationObserver(() => refreshCards());
+        mo.observe(document.body, { childList: true, subtree: true });
+        window.addEventListener('resize', refreshCards, { passive: true });
+
+        function tick() {
+          raf = requestAnimationFrame(tick);
+          for (const c of cards) {
+            const r = c.el.getBoundingClientRect();
+            if (r.bottom < -200 || r.top > window.innerHeight + 200) continue; // skip far-offscreen
+            const cx = Math.max(r.left, Math.min(mx, r.right));
+            const cy = Math.max(r.top, Math.min(my, r.bottom));
+            const dx = mx - cx, dy = my - cy;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const target = dist < PROX_RADIUS ? Math.pow(1 - dist / PROX_RADIUS, 2) : 0;
+            const ease = target > c.cur ? 0.35 : 0.18;
+            c.cur += (target - c.cur) * ease;
+            if (Math.abs(c.cur) < 0.003) c.cur = 0;
+            const scale = 1 + c.cur * 0.045;
+            const lift  = c.cur * -3;
+            c.el.style.transform = c.cur === 0 ? '' : `scale(${scale.toFixed(4)}) translateY(${lift.toFixed(2)}px)`;
+          }
+        }
+        raf = requestAnimationFrame(tick);
+
+        return () => {
+          cancelAnimationFrame(raf);
+          mo.disconnect();
+          window.removeEventListener('mousemove', onMove);
+          window.removeEventListener('touchmove', onTouch);
+          window.removeEventListener('resize', refreshCards);
+        };
+      }, []);
+    }
+
+    function App() {
+      const [dark, setDark]           = useState(true);
+      const [scrolled, setScrolled]   = useState(false);
+      const [activeSection, setActive]= useState('studio');
+      const [mobileOpen, setMobile]   = useState(false);
+      const [track, setTrack]         = useState(TRACKS[0]);
+      const [viewport, setViewport]   = useState('desktop');
+      const [openFaq, setOpenFaq]     = useState(0);
+      const [form, setForm]           = useState({name:'',phone:'',business:'',details:''});
+
+      useReveal();
+      useCardProximity();
+
+      const toggleTheme = () => {
+        const next = !dark;
+        setDark(next);
+        document.documentElement.setAttribute('data-theme', next ? 'dark' : 'light');
+      };
+
+      useEffect(()=>{
+        const onScroll = ()=>{
+          const y = window.scrollY;
+          setScrolled(y > 40);
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          const pb = document.getElementById('progress-bar');
+          if(pb) pb.style.width = max>0 ? `${(y/max)*100}%` : '0%';
+          for(const l of NAV){
+            const el = document.getElementById(`sec-${l.id}`);
+            if(el){ const r=el.getBoundingClientRect(); if(r.top<=80&&r.bottom>80){setActive(l.id);break;} }
+          }
+        };
+        window.addEventListener('scroll', onScroll, {passive:true});
+        return ()=>window.removeEventListener('scroll', onScroll);
+      },[]);
+
+      useEffect(()=>{
+        if(!window.gsap) return;
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.fromTo('.hero-word',{opacity:0,y:44,filter:'blur(10px)'},{
+          opacity:1,y:0,filter:'blur(0px)',duration:0.95,stagger:0.07,ease:'power3.out',delay:0.2,
+        });
+        gsap.fromTo('.hero-sub', {opacity:0,y:22},{opacity:1,y:0,duration:0.8,delay:0.8,ease:'power2.out'});
+        gsap.fromTo('.hero-cta', {opacity:0,y:18},{opacity:1,y:0,duration:0.7,delay:1.05,ease:'power2.out'});
+        gsap.fromTo('.hero-scroll',{opacity:0},{opacity:1,duration:0.6,delay:1.45});
+
+        const fill   = document.querySelector('.process-fill');
+        const ptrack = document.querySelector('.process-track');
+        if(fill&&ptrack){
+          gsap.fromTo(fill,{scaleY:0},{scaleY:1,ease:'none',
+            scrollTrigger:{trigger:ptrack,start:'top 65%',end:'bottom 75%',scrub:true},
+          });
+        }
+      },[]);
+
+      const scrollTo = id=>{
+        setMobile(false);
+        const el = document.getElementById(`sec-${id}`);
+        if(el) window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-64,behavior:'smooth'});
+      };
+
+      const sendWA = e=>{
+        e.preventDefault();
+        const msg=`New inquiry — Webcraft Nepal\n\nName: ${form.name}\nPhone: ${form.phone}\nBusiness: ${form.business||'N/A'}\nTrack: ${track.title}\nDetails: ${form.details||'N/A'}`;
+        window.open(`https://wa.me/9779705407156?text=${encodeURIComponent(msg)}`,'_blank');
+      };
+
+      // Your actual logo as base64 data URL
+      const LOGO_SRC = window.__LOGO_SRC__;
+
+      return (
+        <div style={{position:'relative',zIndex:1}}>
+
+          {/* NAV */}
+          <header className={`nav-bar ${scrolled?'scrolled':''}`}>
+            <a href="#" onClick={e=>{e.preventDefault();scrollTo('studio');}} style={{display:'flex',alignItems:'center',gap:12,textDecoration:'none'}}>
+              <img src={LOGO_SRC} alt="Webcraft Nepal logo" style={{width:38,height:38,borderRadius:10,objectFit:'cover',border:'1px solid var(--border)'}}/>
+              <div style={{lineHeight:1.2}}>
+                <div style={{fontWeight:700,fontSize:14,color:'var(--text)'}}>Webcraft Nepal</div>
+                <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:9,color:'var(--text-muted)',letterSpacing:'0.18em',textTransform:'uppercase'}}>Biratnagar Studio</div>
+              </div>
+            </a>
+            <nav className="hidden-mobile" style={{display:'flex',gap:32,alignItems:'center'}}>
+              {NAV.filter(l=>l.id!=='contact').map(l=>(
+                <a key={l.id} href={`#sec-${l.id}`} onClick={e=>{e.preventDefault();scrollTo(l.id);}}
+                  className={`nav-link ${activeSection===l.id?'active':''}`}>{l.label}</a>
+              ))}
+            </nav>
+            <div style={{display:'flex',gap:10,alignItems:'center'}}>
+              <button className="theme-btn" onClick={toggleTheme} title={dark?'Switch to light mode':'Switch to dark mode'} aria-label="Toggle theme">
+                {dark ? <SunIcon/> : <MoonIcon/>}
+              </button>
+              <a href="#sec-contact" onClick={e=>{e.preventDefault();scrollTo('contact');}} className="btn-primary" style={{padding:'10px 20px',fontSize:12}}>
+                Start a project
+              </a>
+              <button id="mobile-toggle" onClick={()=>setMobile(!mobileOpen)}
+                style={{display:'none',alignItems:'center',justifyContent:'center',width:40,height:40,background:'var(--surface-2)',border:'1px solid var(--border)',borderRadius:8,cursor:'pointer',color:'var(--text)'}}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  {mobileOpen?<path strokeLinecap="round" d="M6 6l12 12M18 6L6 18"/>:<path strokeLinecap="round" d="M4 7h16M4 12h16M4 17h16"/>}
+                </svg>
+              </button>
+            </div>
+          </header>
+
+          {/* MOBILE MENU */}
+          <div className={`mobile-menu ${mobileOpen?'open':''}`}>
+            {NAV.map(l=>(
+              <a key={l.id} href={`#sec-${l.id}`} onClick={e=>{e.preventDefault();scrollTo(l.id);}}
+                style={{fontWeight:700,fontSize:28,color:activeSection===l.id?'var(--accent)':'var(--text)',textDecoration:'none',transition:'color 0.2s'}}>
+                {l.label}
+              </a>
+            ))}
+            <button className="theme-btn" onClick={toggleTheme} style={{marginTop:8}}>
+              {dark?<SunIcon/>:<MoonIcon/>}
+            </button>
+          </div>
+
+          {/* HERO */}
+          <div id="sec-studio" style={{position:'relative',minHeight:'100vh',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:'0 24px',textAlign:'center',overflow:'hidden'}}>
+            <div className="grid-bg" style={{opacity:0.7}}/>
+            <Particles/>
+
+            <div className="hero-word" style={{opacity:0,marginBottom:28,display:'inline-flex',alignItems:'center',gap:8,background:'var(--accent-soft)',border:'1px solid rgba(218,119,68,0.22)',borderRadius:100,padding:'7px 18px'}}>
+              <span className="glow-dot" style={{width:7,height:7,borderRadius:'50%',background:'var(--accent)',display:'inline-block',flexShrink:0}}/>
+              <span style={{fontFamily:'JetBrains Mono,monospace',fontSize:10,letterSpacing:'0.18em',textTransform:'uppercase',color:'var(--accent)',fontWeight:600}}>Independent Web Engineering Studio · Biratnagar</span>
+            </div>
+
+            <h1 style={{maxWidth:860,lineHeight:1.05,fontWeight:900,letterSpacing:'-0.03em',marginBottom:28}}>
+              {['Hand-built','websites','for','businesses\u00A0that','refuse','to\u00A0look','like\u00A0a','template.'].map((w,i)=>(
+                <span key={i} className="hero-word" style={{opacity:0,display:'inline-block',marginRight:'0.24em',fontSize:'clamp(34px,5.2vw,70px)'}}>
+                  {i===0?<span className="grad-text">{w}</span>:i===1?<span className="grad-text-warm">{w}</span>:w}
+                </span>
+              ))}
+            </h1>
+
+            <p className="hero-sub" style={{opacity:0,maxWidth:560,fontSize:17,lineHeight:1.72,color:'var(--text-sub)',marginBottom:40}}>
+              Clean code, fast pages, and interfaces built to earn trust — crafted from a blank file every time, for businesses that want to stand out.
+            </p>
+
+            <div className="hero-cta" style={{opacity:0,display:'flex',gap:16,flexWrap:'wrap',justifyContent:'center',marginBottom:72}}>
+              <a href="#sec-work" onClick={e=>{e.preventDefault();scrollTo('work');}} className="btn-primary" style={{fontSize:14,padding:'14px 32px'}}>
+                See how we build
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#sec-contact" onClick={e=>{e.preventDefault();scrollTo('contact');}} className="btn-ghost" style={{fontSize:14,padding:'14px 32px'}}>
+                Start a project
+              </a>
+            </div>
+
+            <div className="hero-scroll float-caret" style={{opacity:0,display:'flex',flexDirection:'column',alignItems:'center',gap:8,color:'var(--text-muted)'}}>
+              <span style={{fontFamily:'JetBrains Mono,monospace',fontSize:10,letterSpacing:'0.2em',textTransform:'uppercase'}}>Scroll</span>
+              <svg width="14" height="22" viewBox="0 0 14 22" fill="none">
+                <rect x="1" y="1" width="12" height="20" rx="6" stroke="currentColor" strokeWidth="1.4"/>
+                <circle cx="7" cy="6" r="1.6" fill="var(--accent)"/>
+              </svg>
+            </div>
+
+            <HeroBottomDeco/>
+          </div>
+
+          {/* MARQUEE */}
+          <div className="marquee-wrap" style={{borderTop:'1px solid var(--border)',borderBottom:'1px solid var(--border)',background:'var(--surface)',padding:'14px 0',overflow:'hidden'}}>
+            <div className="marquee-track">
+              {[0,1].map(rep=>(
+                <div key={rep} style={{display:'flex',alignItems:'center',flexShrink:0}}>
+                  {['CUSTOM CODE','NO TEMPLATES','1–2 WEEKS TO LAUNCH','BUILT IN BIRATNAGAR','SUB-SECOND LOAD','ZERO BLOAT','MOBILE FIRST','OUTCOME-DRIVEN'].map((t,i)=>(
+                    <span key={i} style={{display:'flex',alignItems:'center',gap:24,fontFamily:'JetBrains Mono,monospace',fontSize:11,fontWeight:700,letterSpacing:'0.18em',textTransform:'uppercase',color:'var(--text-muted)',marginRight:24}}>
+                      {t} <span style={{color:'var(--accent)',fontSize:8}}>◆</span>
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* STUDIO */}
+          <section>
+            <div className="reveal" style={{textAlign:'center',maxWidth:680,margin:'0 auto 64px'}}>
+              <div className="eyebrow" style={{marginBottom:16}}>The Studio</div>
+              <h2 style={{fontSize:'clamp(28px,3.5vw,48px)',fontWeight:800,letterSpacing:'-0.03em',lineHeight:1.1,marginBottom:20}}>
+                An engineering-first studio, not a template shop.
+              </h2>
+              <p style={{color:'var(--text-sub)',lineHeight:1.72,fontSize:16}}>
+                Every project starts from a blank file. No drag-and-drop builders. No recycled component kits pretending to be custom work.
+              </p>
+            </div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:24}}>
+              <div className="reveal-left card" style={{padding:'36px 32px'}}>
+                <div style={{marginBottom:20,fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--accent)',letterSpacing:'0.15em',textTransform:'uppercase',fontWeight:700}}>01 / What we are</div>
+                <p style={{color:'var(--text-sub)',lineHeight:1.75,fontSize:15}}>A small, focused studio — not a freelancer collective and not a marketplace of pre-built themes. We write every line of code for your project and ship nothing you don't need.</p>
+              </div>
+              <div className="reveal card" style={{padding:'36px 32px'}}>
+                <div style={{marginBottom:20,fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--accent)',letterSpacing:'0.15em',textTransform:'uppercase',fontWeight:700}}>02 / What we deliver</div>
+                <div style={{display:'flex',flexDirection:'column',gap:14}}>
+                  {["Hand-coded — every line written for your project, nothing shipped you don't need.","Locally rooted — built around how Nepali businesses operate and how their customers browse.","Honest about who we are — a new, small studio, upfront about it, and confident in the work."].map((t,i)=>(
+                    <div key={i} style={{display:'flex',gap:12,alignItems:'flex-start'}}>
+                      <div style={{width:20,height:20,borderRadius:6,background:'var(--accent-soft)',border:'1px solid rgba(218,119,68,0.22)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round"/></svg>
+                      </div>
+                      <p style={{color:'var(--text-sub)',fontSize:14,lineHeight:1.65}}>{t}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="reveal-right card" style={{padding:'36px 32px'}}>
+                <div style={{marginBottom:20,fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--accent)',letterSpacing:'0.15em',textTransform:'uppercase',fontWeight:700}}>03 / By the numbers</div>
+                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20}}>
+                  {[['1–2','weeks to launch'],['100%','custom code'],['0','builder bloat'],['∞','yours to keep']].map(([n,l],i)=>(
+                    <div key={i}>
+                      <div style={{fontSize:28,fontWeight:800,letterSpacing:'-0.03em',background:'linear-gradient(135deg,var(--text),var(--accent-2))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>{n}</div>
+                      <div style={{color:'var(--text-muted)',fontSize:12,marginTop:4}}>{l}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* OUTCOMES */}
+          <section id="sec-outcomes">
+            <div className="reveal" style={{textAlign:'center',maxWidth:680,margin:'0 auto 72px'}}>
+              <div className="eyebrow" style={{marginBottom:16}}>What You Walk Away With</div>
+              <h2 style={{fontSize:'clamp(28px,3.5vw,48px)',fontWeight:800,letterSpacing:'-0.03em',lineHeight:1.1,marginBottom:20}}>Not features. Outcomes.</h2>
+              <p style={{color:'var(--text-sub)',lineHeight:1.72,fontSize:16}}>We don't sell page counts or animation packages. We build websites that produce real, measurable results for your business.</p>
+            </div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))',gap:24,marginBottom:56}}>
+              {[
+                { icon:"phone", num:"01", headline:"More inquiries from the right people", body:"A clear, fast site that communicates trust in the first five seconds means visitors who are already half-sold when they hit your contact form." },
+                { icon:"bolt",  num:"02", headline:"A site that works on any network", body:"Most visitors arrive on a phone with patchy data. Pages that load in under a second on 3G aren't a bonus — they're the difference between a lead and a bounce." },
+                { icon:"shield",num:"03", headline:"A brand that looks bigger than it is", body:"Good design signals seriousness. When your site looks built — not assembled — clients and partners trust you before they've read a single word." },
+              ].map((o,i)=>(
+                <div key={i} className="reveal card" style={{padding:'40px 36px',transitionDelay:`${i*80}ms`}}>
+                  <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--accent)',letterSpacing:'0.15em',textTransform:'uppercase',fontWeight:700,marginBottom:20}}>{o.num}</div>
+                  <h3 style={{fontWeight:800,fontSize:20,letterSpacing:'-0.025em',lineHeight:1.25,marginBottom:16}}>{o.headline}</h3>
+                  <p style={{color:'var(--text-sub)',fontSize:14,lineHeight:1.75}}>{o.body}</p>
+                </div>
+              ))}
+            </div>
+            <div className="reveal" style={{background:'var(--accent-soft)',border:'1px solid rgba(218,119,68,0.18)',borderRadius:20,padding:'56px 48px',textAlign:'center',marginBottom:56}}>
+              <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--accent)',letterSpacing:'0.2em',textTransform:'uppercase',fontWeight:700,marginBottom:24}}>What we believe</div>
+              <blockquote style={{fontSize:'clamp(18px,2.5vw,30px)',fontWeight:800,letterSpacing:'-0.025em',lineHeight:1.3,color:'var(--text)',maxWidth:780,margin:'0 auto 0'}}>
+                "A website isn't a digital brochure. It's your best salesperson — and it should work harder than anyone on your payroll."
+              </blockquote>
+            </div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:20}}>
+              <div className="reveal-left card" style={{padding:'36px 32px'}}>
+                <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--accent)',letterSpacing:'0.15em',textTransform:'uppercase',fontWeight:700,marginBottom:20}}>Who we build for</div>
+                <div style={{display:'flex',flexDirection:'column',gap:14}}>
+                  {["Small businesses that have been told a website is too expensive or too slow to build.","Hotels, restaurants, and service businesses losing bookings to competitors with better-looking sites.","Startups that need to look established before they technically are.","Anyone who's been burned by a template and wants something that's actually theirs."].map((t,i)=>(
+                    <div key={i} style={{display:'flex',gap:12,alignItems:'flex-start'}}>
+                      <div style={{width:20,height:20,borderRadius:6,background:'var(--accent-soft)',border:'1px solid rgba(218,119,68,0.22)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round"/></svg>
+                      </div>
+                      <p style={{color:'var(--text-sub)',fontSize:14,lineHeight:1.65}}>{t}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="reveal card" style={{padding:'36px 32px'}}>
+                <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--accent)',letterSpacing:'0.15em',textTransform:'uppercase',fontWeight:700,marginBottom:20}}>What you own after</div>
+                <div style={{display:'flex',flexDirection:'column',gap:14}}>
+                  {["A site that loads fast and looks sharp on any device — no asterisks.","Clean, readable code you can hand to any developer and they'll understand it.","Zero dependency on our tools, our login, or our continued existence as a studio.","A digital presence that makes you genuinely proud to share your URL."].map((t,i)=>(
+                    <div key={i} style={{display:'flex',gap:12,alignItems:'flex-start'}}>
+                      <div style={{width:20,height:20,borderRadius:6,background:'var(--accent-soft)',border:'1px solid rgba(218,119,68,0.22)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round"/></svg>
+                      </div>
+                      <p style={{color:'var(--text-sub)',fontSize:14,lineHeight:1.65}}>{t}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="reveal-right card" style={{padding:'36px 32px',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+                <div>
+                  <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--accent)',letterSpacing:'0.15em',textTransform:'uppercase',fontWeight:700,marginBottom:20}}>Our standard</div>
+                  <p style={{color:'var(--text-sub)',fontSize:14,lineHeight:1.75,marginBottom:24}}>We're a young studio. We'll tell you that upfront. What we won't do is use it as an excuse. Every build gets the same rigour we'd want if the site were ours.</p>
+                  <div style={{borderLeft:'2px solid var(--accent)',paddingLeft:20,marginBottom:24}}>
+                    <p style={{color:'var(--text)',fontSize:15,fontWeight:600,lineHeight:1.5,fontStyle:'italic'}}>"We'd rather take fewer projects and do each one properly than scale fast and build mediocre."</p>
+                  </div>
+                </div>
+                <a href="#sec-contact" onClick={e=>{e.preventDefault();scrollTo('contact');}} className="btn-primary" style={{fontSize:12,padding:'12px 20px',justifyContent:'center',borderRadius:10,marginTop:8}}>
+                  Start a conversation
+                </a>
+              </div>
+            </div>
+          </section>
+
+          {/* PROCESS */}
+          <section id="sec-process">
+            <div className="reveal" style={{textAlign:'center',maxWidth:620,margin:'0 auto 72px'}}>
+              <div className="eyebrow" style={{marginBottom:16}}>The Process</div>
+              <h2 style={{fontSize:'clamp(28px,3.5vw,48px)',fontWeight:800,letterSpacing:'-0.03em',lineHeight:1.1}}>Four stages. No shortcuts skipped.</h2>
+            </div>
+            <div style={{position:'relative',maxWidth:720,margin:'0 auto'}}>
+              <div className="process-track" style={{position:'absolute',left:23,top:0,bottom:0,width:2,background:'var(--border)'}}>
+                <div className="process-fill" style={{position:'absolute',inset:0,transformOrigin:'top',background:'linear-gradient(180deg,var(--accent),var(--accent-3))',transform:'scaleY(0)'}}/>
+              </div>
+              <div style={{display:'flex',flexDirection:'column',gap:28,paddingLeft:72}}>
+                {STEPS.map((step,i)=>(
+                  <div key={step.n} className="reveal" style={{transitionDelay:`${i*80}ms`,position:'relative'}}>
+                    <div style={{position:'absolute',left:-72,width:48,height:48,borderRadius:'50%',background:'var(--bg-2)',border:'1px solid var(--border-2)',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                      <span style={{fontFamily:'JetBrains Mono,monospace',fontSize:11,fontWeight:700,color:'var(--accent)',letterSpacing:'0.05em'}}>{step.n}</span>
+                    </div>
+                    <div className="card" style={{padding:'28px 32px'}}>
+                      <h3 style={{fontWeight:700,fontSize:18,marginBottom:10,letterSpacing:'-0.02em'}}>{step.title}</h3>
+                      <p style={{color:'var(--text-sub)',fontSize:14,lineHeight:1.72}}>{step.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* WORK */}
+          <section id="sec-work" style={{maxWidth:'100%',padding:'100px 40px'}}>
+            <div style={{maxWidth:1200,margin:'0 auto'}}>
+              <div className="reveal" style={{textAlign:'center',maxWidth:640,margin:'0 auto 56px'}}>
+                <div className="eyebrow" style={{marginBottom:16}}>Build Tracks</div>
+                <h2 style={{fontSize:'clamp(28px,3.5vw,48px)',fontWeight:800,letterSpacing:'-0.03em',lineHeight:1.1,marginBottom:16}}>Pick a track. Preview it live.</h2>
+                <p style={{color:'var(--text-sub)',fontSize:15}}>Three starting points, each shaped around a different way of doing business. Every build is custom from there.</p>
+              </div>
+              <div className="reveal-scale card" style={{overflow:'hidden',marginBottom:32}}>
+                <div style={{background:'var(--surface-2)',borderBottom:'1px solid var(--border)',padding:'12px 20px',display:'flex',alignItems:'center',gap:20,flexWrap:'wrap'}}>
+                  <div style={{display:'flex',gap:7}}>
+                    {['#FF6058','#FFBD2E','#28CA41'].map(c=><div key={c} style={{width:10,height:10,borderRadius:'50%',background:c,opacity:0.7}}/>)}
+                  </div>
+                  <div style={{flex:1,maxWidth:400,background:'var(--surface)',border:'1px solid var(--border)',borderRadius:6,padding:'6px 14px',fontFamily:'JetBrains Mono,monospace',fontSize:11,color:'var(--text-muted)',textAlign:'center',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>
+                    webcraft.np/work/{track.id}
+                  </div>
+                  <div style={{marginLeft:'auto',display:'flex',gap:4,background:'var(--surface)',border:'1px solid var(--border)',borderRadius:8,padding:4}}>
+                    {['mobile','desktop'].map(v=>(
+                      <button key={v} onClick={()=>setViewport(v)} className={`viewport-btn ${viewport===v?'active':''}`}
+                        style={{padding:'5px 14px',borderRadius:6,fontSize:10,fontFamily:'JetBrains Mono,monospace',fontWeight:700,letterSpacing:'0.1em',textTransform:'uppercase',cursor:'pointer',border:'none',color:viewport===v?'var(--btn-primary-text)':'var(--text-muted)'}}>
+                        {v}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="simulator-grid" style={{display:'grid',gridTemplateColumns:'1fr 380px',minHeight:520}}>
+                  <div style={{background:'var(--bg-3)',display:'flex',alignItems:'center',justifyContent:'center',padding:40,borderRight:'1px solid var(--border)'}}>
+                    <div style={{width:'100%',maxWidth:viewport==='mobile'?280:'100%',aspectRatio:viewport==='mobile'?'9/16':'16/9',background:'var(--bg-2)',border:'1px solid var(--border-2)',borderRadius:12,overflow:'hidden',transition:'all 0.5s cubic-bezier(.22,1,.36,1)',boxShadow:'0 24px 80px rgba(0,0,0,0.4)'}}>
+                      <div style={{height:'50%',overflow:'hidden',position:'relative'}}>
+                        <img src={track.image} alt={track.title} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+                        <div style={{position:'absolute',inset:0,background:'linear-gradient(to top, var(--bg-2), transparent)'}}/>
+                      </div>
+                      <div style={{padding:24}}>
+                        <h3 style={{fontWeight:700,fontSize:16,marginBottom:8,lineHeight:1.3}}>{track.heroTitle}</h3>
+                        <p style={{color:'var(--text-muted)',fontSize:12,lineHeight:1.6,marginBottom:16}}>{track.heroSub}</p>
+                        <div style={{display:'flex',flexWrap:'wrap',gap:6}}>{track.tags.map(t=><span key={t} className="tag">{t}</span>)}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{padding:'36px 32px',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+                    <div>
+                      <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--accent)',letterSpacing:'0.15em',textTransform:'uppercase',fontWeight:700,marginBottom:8}}>{track.category}</div>
+                      <h2 style={{fontWeight:800,fontSize:22,letterSpacing:'-0.03em',marginBottom:12}}>{track.title}</h2>
+                      <p style={{color:'var(--text-sub)',fontSize:13,lineHeight:1.72,marginBottom:24}}>{track.desc}</p>
+                      <div style={{display:'flex',flexDirection:'column',gap:10}}>
+                        {track.features.map((f,i)=>(
+                          <div key={i} style={{display:'flex',gap:12,alignItems:'flex-start',background:'var(--surface-2)',border:'1px solid var(--border)',borderRadius:10,padding:'12px 14px'}}>
+                            <div className="glow-dot" style={{width:7,height:7,borderRadius:'50%',background:'var(--accent)',flexShrink:0,marginTop:4}}/>
+                            <span style={{fontSize:13,color:'var(--text-sub)',lineHeight:1.5}}>{f}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div style={{borderTop:'1px solid var(--border)',paddingTop:24,marginTop:28,display:'flex',alignItems:'center',justifyContent:'space-between',gap:16,flexWrap:'wrap'}}>
+                      <div>
+                        <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--text-muted)',textTransform:'uppercase',letterSpacing:'0.12em',marginBottom:4}}>Starting at</div>
+                        <div style={{fontWeight:800,fontSize:22,letterSpacing:'-0.03em',background:'linear-gradient(135deg,var(--text),var(--accent-2))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>
+                          Rs. {track.price.toLocaleString()}
+                        </div>
+                      </div>
+                      <a href="#sec-contact" onClick={e=>{e.preventDefault();scrollTo('contact');}} className="btn-primary" style={{fontSize:12,padding:'11px 20px'}}>
+                        Talk about this track
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="work-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}}>
+                {TRACKS.map(t=>(
+                  <button key={t.id} onClick={()=>setTrack(t)} className={`track-btn card ${track.id===t.id?'active':''}`}
+                    style={{textAlign:'left',padding:'24px 22px',cursor:'pointer',width:'100%',background:'var(--surface)'}}>
+                    <div className="eyebrow" style={{marginBottom:8,fontSize:9}}>{t.category}</div>
+                    <h3 style={{fontWeight:700,fontSize:16,marginBottom:8,letterSpacing:'-0.02em'}}>{t.title}</h3>
+                    <p style={{color:'var(--text-muted)',fontSize:13,lineHeight:1.6,marginBottom:16,WebkitLineClamp:3,overflow:'hidden',display:'-webkit-box',WebkitBoxOrient:'vertical'}}>{t.desc}</p>
+                    <div style={{fontFamily:'JetBrains Mono,monospace',fontWeight:700,fontSize:13,color:'var(--accent)'}}>From Rs. {t.price.toLocaleString()}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* PRICING */}
+          <section id="sec-pricing">
+            <div className="reveal" style={{textAlign:'center',maxWidth:640,margin:'0 auto 64px'}}>
+              <div className="eyebrow" style={{marginBottom:16}}>Pricing</div>
+              <h2 style={{fontSize:'clamp(28px,3.5vw,48px)',fontWeight:800,letterSpacing:'-0.03em',lineHeight:1.1,marginBottom:20}}>Honest pricing. No surprises.</h2>
+              <p style={{color:'var(--text-sub)',lineHeight:1.72,fontSize:16}}>Every package is a fully custom, hand-coded build — never a template. Pick a starting point; the final quote is shaped around your exact needs.</p>
+            </div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:24,alignItems:'stretch'}}>
+              {PRICING.map((p,i)=>(
+                <div key={i} className="reveal card" style={{padding:'40px 32px',transitionDelay:`${i*80}ms`,display:'flex',flexDirection:'column',position:'relative',border:p.popular?'1px solid var(--accent)':undefined}}>
+                  {p.popular && (
+                    <div style={{alignSelf:'flex-start',background:'linear-gradient(135deg,var(--accent),var(--accent-2))',color:'var(--btn-primary-text)',fontFamily:'JetBrains Mono,monospace',fontSize:9,fontWeight:700,letterSpacing:'0.15em',textTransform:'uppercase',padding:'5px 14px',borderRadius:100,zIndex:3,marginBottom:16}}>Most Popular</div>
+                  )}
+                  <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:11,color:'var(--accent)',letterSpacing:'0.15em',textTransform:'uppercase',fontWeight:700,marginBottom:16}}>{p.name}</div>
+                  <div style={{display:'flex',alignItems:'flex-end',gap:6,marginBottom:8}}>
+                    <span style={{fontSize:38,fontWeight:800,letterSpacing:'-0.03em',background:'linear-gradient(135deg,var(--text),var(--accent-2))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>Rs. {p.price.toLocaleString()}</span>
+                  </div>
+                  <p style={{color:'var(--text-muted)',fontSize:13,marginBottom:28}}>{p.tagline}</p>
+                  <div style={{display:'flex',flexDirection:'column',gap:12,marginBottom:32,flex:1}}>
+                    {p.features.map((f,j)=>(
+                      <div key={j} style={{display:'flex',gap:12,alignItems:'flex-start'}}>
+                        <div style={{width:20,height:20,borderRadius:6,background:'var(--accent-soft)',border:'1px solid rgba(218,119,68,0.22)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:1}}>
+                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round"/></svg>
+                        </div>
+                        <span style={{color:'var(--text-sub)',fontSize:13.5,lineHeight:1.55}}>{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <a href="#sec-contact" onClick={e=>{e.preventDefault();scrollTo('contact');}} className={p.popular?'btn-primary':'btn-ghost'} style={{fontSize:13,padding:'13px 24px',justifyContent:'center',borderRadius:10}}>
+                    Get started
+                  </a>
+                </div>
+              ))}
+            </div>
+            <p className="reveal" style={{textAlign:'center',color:'var(--text-muted)',fontSize:13,marginTop:32,fontFamily:'JetBrains Mono,monospace',letterSpacing:'0.04em'}}>
+              All prices in NPR · One-time build cost · Hosting & domain billed separately
+            </p>
+          </section>
+
+          {/* SERVICES */}
+          <section id="sec-services">
+            <div className="reveal" style={{textAlign:'center',maxWidth:640,margin:'0 auto 64px'}}>
+              <div className="eyebrow" style={{marginBottom:16}}>Services</div>
+              <h2 style={{fontSize:'clamp(28px,3.5vw,48px)',fontWeight:800,letterSpacing:'-0.03em',lineHeight:1.1,marginBottom:20}}>Everything we can build for you.</h2>
+              <p style={{color:'var(--text-sub)',lineHeight:1.72,fontSize:16}}>From a single landing page to a full multi-page business site — all hand-coded, all yours to keep.</p>
+            </div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:20}}>
+              {SERVICES.map((s,i)=>(
+                <div key={i} className="reveal card" style={{padding:'32px 28px',transitionDelay:`${i*50}ms`}}>
+                  <div className="feature-icon" style={{marginBottom:20}}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.8">{ICONS[s.icon]}</svg>
+                  </div>
+                  <h3 style={{fontWeight:700,fontSize:16,marginBottom:10,letterSpacing:'-0.02em'}}>{s.title}</h3>
+                  <p style={{color:'var(--text-muted)',fontSize:13.5,lineHeight:1.7}}>{s.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* STACK */}
+          <section id="sec-stack">
+            <div className="reveal" style={{textAlign:'center',maxWidth:620,margin:'0 auto 56px'}}>
+              <div className="eyebrow" style={{marginBottom:16}}>The Stack</div>
+              <h2 style={{fontSize:'clamp(28px,3.5vw,48px)',fontWeight:800,letterSpacing:'-0.03em',lineHeight:1.1,marginBottom:20}}>Built on tools that last.</h2>
+              <p style={{color:'var(--text-sub)',lineHeight:1.72,fontSize:16}}>Modern, battle-tested technologies — chosen so your site stays fast, secure, and easy to hand to any developer later.</p>
+            </div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(150px,1fr))',gap:16}}>
+              {STACK.map((s,i)=>(
+                <div key={i} className="reveal-scale card" style={{padding:'28px 22px',textAlign:'center',transitionDelay:`${i*40}ms`}}>
+                  <div style={{fontWeight:800,fontSize:18,letterSpacing:'-0.02em',marginBottom:6}}>{s.name}</div>
+                  <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:10,color:'var(--text-muted)',letterSpacing:'0.1em',textTransform:'uppercase'}}>{s.note}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* CAPABILITIES */}
+          <section id="sec-capabilities">
+            <div className="reveal" style={{textAlign:'center',maxWidth:620,margin:'0 auto 64px'}}>
+              <div className="eyebrow" style={{marginBottom:16}}>Capabilities</div>
+              <h2 style={{fontSize:'clamp(28px,3.5vw,48px)',fontWeight:800,letterSpacing:'-0.03em',lineHeight:1.1}}>What every build is held to.</h2>
+            </div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(240px,1fr))',gap:20}}>
+              {CAPS.map((cap,i)=>(
+                <div key={i} className="reveal card" style={{padding:'32px 28px',transitionDelay:`${i*60}ms`}}>
+                  <div className="feature-icon" style={{marginBottom:20}}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.8">{ICONS[cap.icon]}</svg>
+                  </div>
+                  <h3 style={{fontWeight:700,fontSize:16,marginBottom:10,letterSpacing:'-0.02em'}}>{cap.title}</h3>
+                  <p style={{color:'var(--text-muted)',fontSize:13.5,lineHeight:1.7}}>{cap.text}</p>
+                </div>
+              ))}
+            </div>
+            <div className="reveal" style={{marginTop:64,background:'var(--accent-soft)',border:'1px solid rgba(218,119,68,0.20)',borderRadius:20,padding:'48px 40px',textAlign:'center'}}>
+              <h3 style={{fontSize:'clamp(20px,2.5vw,32px)',fontWeight:800,letterSpacing:'-0.03em',marginBottom:16}}>Ready to build something real?</h3>
+              <p style={{color:'var(--text-sub)',marginBottom:32,fontSize:15}}>Tell us about your project and we'll get back to you within one business day.</p>
+              <a href="#sec-contact" onClick={e=>{e.preventDefault();scrollTo('contact');}} className="btn-primary" style={{fontSize:14,padding:'14px 36px'}}>Start a project</a>
+            </div>
+          </section>
+
+          {/* FAQ */}
+          <section id="sec-faq">
+            <div className="reveal" style={{textAlign:'center',maxWidth:560,margin:'0 auto 64px'}}>
+              <div className="eyebrow" style={{marginBottom:16}}>Questions</div>
+              <h2 style={{fontSize:'clamp(28px,3.5vw,48px)',fontWeight:800,letterSpacing:'-0.03em',lineHeight:1.1}}>Before you reach out.</h2>
+            </div>
+            <div style={{maxWidth:720,margin:'0 auto',display:'flex',flexDirection:'column',gap:10}}>
+              {FAQS.map((item,i)=>(
+                <div key={i} className="reveal card" style={{transitionDelay:`${i*50}ms`,overflow:'hidden'}}>
+                  <button onClick={()=>setOpenFaq(openFaq===i?-1:i)}
+                    style={{width:'100%',display:'flex',alignItems:'center',justifyContent:'space-between',textAlign:'left',padding:'20px 24px',background:'none',border:'none',cursor:'pointer',color:'var(--text)'}}>
+                    <span style={{fontWeight:600,fontSize:15}}>{item.q}</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"
+                      style={{flexShrink:0,marginLeft:16,transform:openFaq===i?'rotate(180deg)':'rotate(0)',transition:'transform 0.35s cubic-bezier(.22,1,.36,1)',color:openFaq===i?'var(--accent)':'var(--text-muted)'}}>
+                      <path strokeLinecap="round" d="M6 9l6 6 6-6"/>
+                    </svg>
+                  </button>
+                  <div className={`faq-body ${openFaq===i?'open':''}`}>
+                    <div>
+                      <p style={{padding:'0 24px 20px',paddingTop:16,color:'var(--text-sub)',fontSize:14,lineHeight:1.75,borderTop:'1px solid var(--border)'}}>{item.a}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* CONTACT */}
+          <section id="sec-contact">
+            <div className="reveal" style={{textAlign:'center',maxWidth:560,margin:'0 auto 56px'}}>
+              <div className="eyebrow" style={{marginBottom:16}}>Start a Project</div>
+              <h2 style={{fontSize:'clamp(28px,3.5vw,48px)',fontWeight:800,letterSpacing:'-0.03em',lineHeight:1.1,marginBottom:16}}>Tell us what you're building.</h2>
+              <p style={{color:'var(--text-sub)',fontSize:15}}>A few details now saves a lot of back-and-forth later.</p>
+            </div>
+            <div className="reveal-scale card" style={{maxWidth:640,margin:'0 auto',padding:'48px 44px'}}>
+              <form onSubmit={sendWA} style={{display:'flex',flexDirection:'column',gap:22}}>
+                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:16}}>
+                  <div>
+                    <label style={{display:'block',fontFamily:'JetBrains Mono,monospace',fontSize:10,fontWeight:700,letterSpacing:'0.15em',textTransform:'uppercase',color:'var(--text-muted)',marginBottom:8}}>Your name *</label>
+                    <input type="text" required className="form-input" value={form.name} onChange={e=>setForm({...form,name:e.target.value})} placeholder="e.g., Niranjan Thapa"/>
+                  </div>
+                  <div>
+                    <label style={{display:'block',fontFamily:'JetBrains Mono,monospace',fontSize:10,fontWeight:700,letterSpacing:'0.15em',textTransform:'uppercase',color:'var(--text-muted)',marginBottom:8}}>Phone number *</label>
+                    <input type="text" required className="form-input" value={form.phone} onChange={e=>setForm({...form,phone:e.target.value})} placeholder="+977 98XXXXXXXX"/>
+                  </div>
+                </div>
+                <div>
+                  <label style={{display:'block',fontFamily:'JetBrains Mono,monospace',fontSize:10,fontWeight:700,letterSpacing:'0.15em',textTransform:'uppercase',color:'var(--text-muted)',marginBottom:8}}>Business name (optional)</label>
+                  <input type="text" className="form-input" value={form.business} onChange={e=>setForm({...form,business:e.target.value})} placeholder="e.g., Himalayan Trade Pvt. Ltd."/>
+                </div>
+                <div>
+                  <label style={{display:'block',fontFamily:'JetBrains Mono,monospace',fontSize:10,fontWeight:700,letterSpacing:'0.15em',textTransform:'uppercase',color:'var(--text-muted)',marginBottom:8}}>What do you need built?</label>
+                  <textarea className="form-input" value={form.details} onChange={e=>setForm({...form,details:e.target.value})} placeholder="A few lines about the business and what the site needs to do..."/>
+                </div>
+                <div style={{background:'var(--accent-soft)',border:'1px solid rgba(218,119,68,0.18)',borderRadius:10,padding:'14px 16px',display:'flex',gap:12,alignItems:'flex-start'}}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" style={{marginTop:2,flexShrink:0}}><circle cx="12" cy="12" r="10"/><path strokeLinecap="round" d="M12 8v4M12 16h.01"/></svg>
+                  <p style={{color:'var(--text-sub)',fontSize:12,lineHeight:1.6}}>Sending this opens WhatsApp with everything filled in — nothing is submitted until you hit send there.</p>
+                </div>
+                <button type="submit" className="btn-primary" style={{fontSize:13,padding:'15px 24px',justifyContent:'center',borderRadius:10}}>
+                  Send via WhatsApp
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                </button>
+              </form>
+            </div>
+          </section>
+
+          {/* FOOTER */}
+          <footer style={{borderTop:'1px solid var(--border)',padding:'48px 40px',marginTop:40,background:'var(--surface)'}}>
+            <div style={{maxWidth:1200,margin:'0 auto',display:'flex',flexWrap:'wrap',gap:24,alignItems:'center',justifyContent:'space-between'}}>
+              <div>
+                <div style={{fontFamily:'JetBrains Mono,monospace',fontSize:11,color:'var(--accent)',fontWeight:700,letterSpacing:'0.15em',textTransform:'uppercase',marginBottom:6}}>Webcraft Nepal</div>
+                <div style={{color:'var(--text-muted)',fontSize:13}}>© 2026 Webcraft Nepal. Built in Biratnagar.</div>
+              </div>
+              <div style={{display:'flex',gap:24,flexWrap:'wrap'}}>
+                {NAV.map(l=>(
+                  <a key={l.id} href={`#sec-${l.id}`} onClick={e=>{e.preventDefault();scrollTo(l.id);}}
+                    style={{color:'var(--text-muted)',fontSize:13,textDecoration:'none',transition:'color 0.2s'}}
+                    onMouseEnter={e=>e.target.style.color='var(--accent)'}
+                    onMouseLeave={e=>e.target.style.color='var(--text-muted)'}>{l.label}</a>
+                ))}
+              </div>
+              <div style={{display:'flex',gap:20,fontFamily:'JetBrains Mono,monospace',fontSize:11,color:'var(--text-muted)'}}>
+                <span style={{color:'var(--accent)'}}>// BIRATNAGAR</span>
+                <span>26.4525° N</span>
+                <span>87.2718° E</span>
+              </div>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>
